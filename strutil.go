@@ -396,6 +396,97 @@ func BoolsToStrs(items []bool) []string {
 	return result
 }
 
+func M2string(i interface{}) string {
+	if i == nil {
+		return ""
+	}
+	switch t := i.(type) {
+	case string:
+		return t
+	default:
+		return fmt.Sprintf("%v", i)
+	}
+}
+
+func M2bool(i interface{}) bool {
+	if i == nil {
+		return false
+	}
+	switch t := i.(type) {
+	case bool:
+		return t
+	default:
+		return StoBol(M2string(i))
+	}
+}
+
+func M2float64(i interface{}) float64 {
+	if i == nil {
+		return 0
+	}
+	switch t := i.(type) {
+	case float64:
+		return t
+	case float32:
+		return float64(t)
+	case int64:
+		return float64(t)
+	case int32:
+		return float64(t)
+	case int16:
+		return float64(t)
+	case int8:
+		return float64(t)
+	case int:
+		return float64(t)
+	case byte:
+		return float64(t)
+	default:
+		return Stof64(M2string(i))
+	}
+}
+func M2float32(i interface{}) float32 {
+	return float32(M2float64(i))
+}
+
+func M2int64(i interface{}) int64 {
+	if i == nil {
+		return 0
+	}
+	switch t := i.(type) {
+	case int64:
+		return i.(int64)
+	case int32:
+		return int64(t)
+	case int16:
+		return int64(t)
+	case int8:
+		return int64(t)
+	case int:
+		return int64(t)
+	case float64:
+		return int64(t)
+	case float32:
+		return int64(t)
+	case byte:
+		return int64(t)
+	default:
+		return Stoi64(M2string(i))
+	}
+}
+
+func M2int32(i interface{}) int32 {
+	return int32(M2int64(i))
+}
+
+func M2int16(i interface{}) int16 {
+	return int16(M2int64(i))
+}
+
+func M2int8(i interface{}) int8 {
+	return int8(M2int64(i))
+}
+
 func Fract(x float64) float64 {
 	_, x = math.Modf(x)
 	return x
