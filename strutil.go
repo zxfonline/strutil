@@ -269,6 +269,22 @@ func ParseInt64s(items []string) ([]int64, error) {
 }
 
 //忽略空字符串
+func ParseUint64s(items []string) ([]uint64, error) {
+	result := make([]uint64, 0, len(items))
+	for i := 0; i < len(items); i++ {
+		t := strings.TrimSpace(items[i])
+		if len(t) != 0 {
+			if f, err := strconv.ParseUint(t, 0, 0); err == nil {
+				result = append(result, f)
+			} else {
+				return nil, fmt.Errorf("invalid []uint64 param:%v ,err:%v", items, err)
+			}
+		}
+	}
+	return result, nil
+}
+
+//忽略空字符串
 func ParseInt32s(items []string) ([]int32, error) {
 	result := make([]int32, 0, len(items))
 	for i := 0; i < len(items); i++ {
