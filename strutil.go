@@ -480,26 +480,28 @@ func M2uint64(i interface{}) uint64 {
 		return 0
 	}
 	switch t := i.(type) {
-	case int64:
-		return uint64(i.(int64))
-	case uint64:
-		return i.(uint64)
-	case int32:
-		return uint64(t)
-	case uint32:
+	case int8:
 		return uint64(t)
 	case int16:
 		return uint64(t)
-	case uint16:
-		return uint64(t)
-	case int8:
-		return uint64(t)
-	case uint8:
+	case int32:
 		return uint64(t)
 	case int:
 		return uint64(t)
+	case int64:
+		return uint64(i.(int64))
+
+	case uint8:
+		return uint64(t)
+	case uint16:
+		return uint64(t)
+	case uint32:
+		return uint64(t)
 	case uint:
 		return uint64(t)
+	case uint64:
+		return i.(uint64)
+
 	case float64:
 		return uint64(t)
 	case float32:
@@ -517,12 +519,24 @@ func M2int32(i interface{}) int32 {
 	return int32(M2uint64(i))
 }
 
+func M2uint32(i interface{}) uint32 {
+	return uint32(M2uint64(i))
+}
+
 func M2int16(i interface{}) int16 {
 	return int16(M2uint64(i))
 }
 
+func M2uint16(i interface{}) uint16 {
+	return uint16(M2uint64(i))
+}
+
 func M2int8(i interface{}) int8 {
 	return int8(M2uint64(i))
+}
+
+func M2uint8(i interface{}) uint8 {
+	return uint8(M2uint64(i))
 }
 
 func Fract(x float64) float64 {
