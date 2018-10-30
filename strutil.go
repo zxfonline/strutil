@@ -584,20 +584,20 @@ func FirstToLower(s string) string {
 
 var (
 	validChars = []*unicode.RangeTable{
-		unicode.Han,                  //汉语 中文集
-		unicode.Hangul,               //旧朝鲜文
-		unicode.Unified_Ideograph,    //中日韩统一表意文字
-		unicode.Thai,                 //泰文
-		unicode.Latin,                //中欧语言：克罗地亚语、捷克语、匈牙利语、波兰语、斯洛伐克语、斯洛文尼亚语、上索布语、下索布语、阿尔巴尼亚语、英语、德语、拉丁语、法语、西班牙语、葡萄牙、意大利、荷兰、印尼
-		unicode.Cyrillic,             //西里尔字母：斯拉夫语族的语言，包括俄语、乌克兰语、卢森尼亚语、白俄罗斯语、保加利亚语、塞尔维亚语、马其顿语等
-		unicode.Old_Italic,           //古意大利文
-		unicode.Old_Turkic,           //古突厥文（土耳其）
-		unicode.Hiragana,             //日语：平假名
-		unicode.Katakana,             //日语：片假名
-		unicode.Upper,                //大写
-		unicode.Lower,                //小写
-		unicode.Digit,                //十进制数字
-		unicode.Terminal_Punctuation, //句子终结符号
+		unicode.Han,               //汉语 中文集
+		unicode.Hangul,            //旧朝鲜文
+		unicode.Unified_Ideograph, //中日韩统一表意文字
+		unicode.Thai,              //泰文
+		unicode.Latin,             //中欧语言：克罗地亚语、捷克语、匈牙利语、波兰语、斯洛伐克语、斯洛文尼亚语、上索布语、下索布语、阿尔巴尼亚语、英语、德语、拉丁语、法语、西班牙语、葡萄牙、意大利、荷兰、印尼
+		unicode.Cyrillic,          //西里尔字母：斯拉夫语族的语言，包括俄语、乌克兰语、卢森尼亚语、白俄罗斯语、保加利亚语、塞尔维亚语、马其顿语等
+		unicode.Old_Italic,        //古意大利文
+		unicode.Old_Turkic,        //古突厥文（土耳其）
+		unicode.Hiragana,          //日语：平假名
+		unicode.Katakana,          //日语：片假名
+		unicode.Upper,             //大写
+		unicode.Lower,             //小写
+		unicode.Digit,             //十进制数字
+		// unicode.Terminal_Punctuation, //句子终结符号
 		//		unicode.Zs,    //空格
 	}
 )
@@ -615,12 +615,10 @@ func CheckVaildName(name string, minLen, maxLen int) bool {
 			return false
 		}
 		switch {
-		case c == '_', c == '、', c == '~':
+		case c == '_':
 		case c >= 'a' && c <= 'z':
 		case c >= 'A' && c <= 'Z':
 		case c >= '0' && c <= '9':
-		case c == ' ', c == '\'', c == ';', c == '"', c == '#', c == '\\':
-			return false
 		case unicode.IsOneOf(validChars, c):
 		default:
 			return false
@@ -650,8 +648,6 @@ func CheckVaildName1(name string, minLen, maxLen int) bool {
 			if i == 0 || i == (length-1) { //第一个、最后一个字符不能为空格
 				return false
 			}
-		case c == '\'', c == ';', c == '"', c == '#', c == '\\':
-			return false
 		case unicode.IsOneOf(validChars, c):
 		default:
 			return false
@@ -659,31 +655,27 @@ func CheckVaildName1(name string, minLen, maxLen int) bool {
 	}
 	return true
 }
-func CheckVaildContent(str string, minLen, maxLen int) bool {
-	r := []rune(str)
+
+func CheckVaildAbbr(abbr string, size int) bool {
+	r := []rune(abbr)
 	length := len(r)
 	//1.长度是否合法
-	if length < minLen || length > maxLen {
+	if length != size {
 		return false
 	}
-
 	//2.是否包含非法字符
+	allSpace := true
 	for _, c := range r {
-		if n := utf8.RuneLen(c); n > 3 || n == -1 {
-			return false
-		}
 		switch {
-		case c == '_', c == '、', c == '~':
-		case c >= 'a' && c <= 'z':
-		case c >= 'A' && c <= 'Z':
-		case c >= '0' && c <= '9':
 		case c == ' ':
-		case c == '\'', c == ';', c == '"', c == '#', c == '\\':
-			return false
-		case unicode.IsOneOf(validChars, c):
+		case c > ' ' && c <= '~': //abbr支持所有可见字符
+			allSpace = false
 		default:
 			return false
 		}
+	}
+	if allSpace {
+		return false
 	}
 	return true
 }
