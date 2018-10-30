@@ -32,7 +32,7 @@ var (
 	}
 )
 
-//没找到并且没有默认值则 panic抛错
+//Stou64 没找到并且没有默认值则 panic抛错
 func Stou64(v string, def ...uint64) uint64 {
 	if n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64); err == nil {
 		return n
@@ -43,7 +43,7 @@ func Stou64(v string, def ...uint64) uint64 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stou32 没找到并且没有默认值则 panic抛错
 func Stou32(v string, def ...uint32) uint32 {
 	if n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64); err == nil {
 		return uint32(n)
@@ -54,7 +54,7 @@ func Stou32(v string, def ...uint32) uint32 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stou16 没找到并且没有默认值则 panic抛错
 func Stou16(v string, def ...uint16) uint16 {
 	if n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64); err == nil {
 		return uint16(n)
@@ -65,7 +65,7 @@ func Stou16(v string, def ...uint16) uint16 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stou8 没找到并且没有默认值则 panic抛错
 func Stou8(v string, def ...uint8) uint8 {
 	if n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64); err == nil {
 		return uint8(n)
@@ -76,7 +76,7 @@ func Stou8(v string, def ...uint8) uint8 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stou 没找到并且没有默认值则 panic抛错
 func Stou(v string, def ...uint) uint {
 	if n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64); err == nil {
 		return uint(n)
@@ -87,7 +87,7 @@ func Stou(v string, def ...uint) uint {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stoi64 没找到并且没有默认值则 panic抛错
 func Stoi64(v string, def ...int64) int64 {
 	if n, err := strconv.ParseInt(strings.TrimSpace(v), 0, 0); err == nil {
 		return n
@@ -98,7 +98,7 @@ func Stoi64(v string, def ...int64) int64 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stoi32 没找到并且没有默认值则 panic抛错
 func Stoi32(v string, def ...int32) int32 {
 	if n, err := strconv.ParseInt(strings.TrimSpace(v), 0, 0); err == nil {
 		return int32(n)
@@ -109,7 +109,7 @@ func Stoi32(v string, def ...int32) int32 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stoi16 没找到并且没有默认值则 panic抛错
 func Stoi16(v string, def ...int16) int16 {
 	if n, err := strconv.ParseInt(strings.TrimSpace(v), 0, 0); err == nil {
 		return int16(n)
@@ -120,7 +120,7 @@ func Stoi16(v string, def ...int16) int16 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stoi8 没找到并且没有默认值则 panic抛错
 func Stoi8(v string, def ...int8) int8 {
 	if n, err := strconv.ParseInt(strings.TrimSpace(v), 0, 0); err == nil {
 		return int8(n)
@@ -131,7 +131,7 @@ func Stoi8(v string, def ...int8) int8 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stoi 没找到并且没有默认值则 panic抛错
 func Stoi(v string, def ...int) int {
 	if n, err := strconv.ParseInt(strings.TrimSpace(v), 0, 0); err == nil {
 		return int(n)
@@ -142,7 +142,7 @@ func Stoi(v string, def ...int) int {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//StoBol 没找到并且没有默认值则 panic抛错
 func StoBol(v string, def ...bool) bool {
 	if value, ok := boolString[strings.ToLower(strings.TrimSpace(v))]; ok {
 		return value
@@ -153,7 +153,7 @@ func StoBol(v string, def ...bool) bool {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stof32 没找到并且没有默认值则 panic抛错
 func Stof32(v string, def ...float32) float32 {
 	if val, err := strconv.ParseFloat(strings.TrimSpace(v), 64); err == nil {
 		return float32(val)
@@ -164,7 +164,7 @@ func Stof32(v string, def ...float32) float32 {
 	}
 }
 
-//没找到并且没有默认值则 panic抛错
+//Stof64 没找到并且没有默认值则 panic抛错
 func Stof64(v string, def ...float64) float64 {
 	if val, err := strconv.ParseFloat(strings.TrimSpace(v), 64); err == nil {
 		return val
@@ -204,7 +204,7 @@ func DurationString(d time.Duration) string {
 	return fmt.Sprintf("%d:%02d:%02d", h, m, s)
 }
 
-//忽略空字符串
+//ParseFloat64s 忽略空字符串
 func ParseFloat64s(items []string) ([]float64, error) {
 	result := make([]float64, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -220,7 +220,7 @@ func ParseFloat64s(items []string) ([]float64, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseFloat32s 忽略空字符串
 func ParseFloat32s(items []string) ([]float32, error) {
 	result := make([]float32, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -236,7 +236,7 @@ func ParseFloat32s(items []string) ([]float32, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseInts 忽略空字符串
 func ParseInts(items []string) ([]int, error) {
 	result := make([]int, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -252,7 +252,7 @@ func ParseInts(items []string) ([]int, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseInt64s 忽略空字符串
 func ParseInt64s(items []string) ([]int64, error) {
 	result := make([]int64, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -268,7 +268,7 @@ func ParseInt64s(items []string) ([]int64, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseUint64s 忽略空字符串
 func ParseUint64s(items []string) ([]uint64, error) {
 	result := make([]uint64, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -284,7 +284,7 @@ func ParseUint64s(items []string) ([]uint64, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseInt32s 忽略空字符串
 func ParseInt32s(items []string) ([]int32, error) {
 	result := make([]int32, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -300,7 +300,7 @@ func ParseInt32s(items []string) ([]int32, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseInt16s 忽略空字符串
 func ParseInt16s(items []string) ([]int16, error) {
 	result := make([]int16, len(items))
 	for i := 0; i < len(items); i++ {
@@ -316,7 +316,7 @@ func ParseInt16s(items []string) ([]int16, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseInt8s 忽略空字符串
 func ParseInt8s(items []string) ([]int8, error) {
 	result := make([]int8, len(items))
 	for i := 0; i < len(items); i++ {
@@ -332,7 +332,7 @@ func ParseInt8s(items []string) ([]int8, error) {
 	return result, nil
 }
 
-//忽略空字符串
+//ParseBools 忽略空字符串
 func ParseBools(items []string) ([]bool, error) {
 	result := make([]bool, 0, len(items))
 	for i := 0; i < len(items); i++ {
@@ -449,60 +449,80 @@ func M2float64(i interface{}) float64 {
 		return float64(t)
 	case int64:
 		return float64(t)
+	case uint64:
+		return float64(t)
 	case int32:
+		return float64(t)
+	case uint32:
 		return float64(t)
 	case int16:
 		return float64(t)
+	case uint16:
+		return float64(t)
 	case int8:
+		return float64(t)
+	case uint8:
 		return float64(t)
 	case int:
 		return float64(t)
-	case byte:
+	case uint:
 		return float64(t)
 	default:
-		return Stof64(M2string(i))
+		return Stof64(M2string(i), 0)
 	}
 }
 func M2float32(i interface{}) float32 {
 	return float32(M2float64(i))
 }
 
-func M2int64(i interface{}) int64 {
+func M2uint64(i interface{}) uint64 {
 	if i == nil {
 		return 0
 	}
 	switch t := i.(type) {
 	case int64:
-		return i.(int64)
+		return uint64(i.(int64))
+	case uint64:
+		return i.(uint64)
 	case int32:
-		return int64(t)
+		return uint64(t)
+	case uint32:
+		return uint64(t)
 	case int16:
-		return int64(t)
+		return uint64(t)
+	case uint16:
+		return uint64(t)
 	case int8:
-		return int64(t)
+		return uint64(t)
+	case uint8:
+		return uint64(t)
 	case int:
-		return int64(t)
+		return uint64(t)
+	case uint:
+		return uint64(t)
 	case float64:
-		return int64(t)
+		return uint64(t)
 	case float32:
-		return int64(t)
-	case byte:
-		return int64(t)
+		return uint64(t)
 	default:
-		return Stoi64(M2string(i))
+		return Stou64(M2string(i), 0)
 	}
 }
 
+func M2int64(i interface{}) int64 {
+	return int64(M2uint64(i))
+}
+
 func M2int32(i interface{}) int32 {
-	return int32(M2int64(i))
+	return int32(M2uint64(i))
 }
 
 func M2int16(i interface{}) int16 {
-	return int16(M2int64(i))
+	return int16(M2uint64(i))
 }
 
 func M2int8(i interface{}) int8 {
-	return int8(M2int64(i))
+	return int8(M2uint64(i))
 }
 
 func Fract(x float64) float64 {
