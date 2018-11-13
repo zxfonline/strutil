@@ -702,7 +702,7 @@ func CheckVaildAbbr(abbr string, size int) bool {
 	for _, c := range r {
 		switch {
 		case c == ' ':
-		case c > ' ' && c <= '~': //abbr支持所有可见字符
+		case c > ' ' && c <= '~': //abbr支持所有可见字符 《! " # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~》
 			allSpace = false
 		default:
 			return false
