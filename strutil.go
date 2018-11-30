@@ -732,8 +732,8 @@ const (
 
 func RandStr(n int) string {
 	b := make([]byte, n)
-	// A rand.Int63() generates 63 random bits, enough for letterIdxMax letters!
-	for i, cache, remain := n-1, rand.Int63(), letterIdxMax; i >= 0; {
+	// A rd.Int63() generates 63 random bits, enough for letterIdxMax letters!
+	for i, cache, remain := n-1, rd.Int63(), letterIdxMax; i >= 0; {
 		if remain == 0 {
 			cache, remain = rd.Int63(), letterIdxMax
 		}
